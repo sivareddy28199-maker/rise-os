@@ -4,7 +4,7 @@ This is a big brief, so I'll build it in stages. Each stage gives you something 
 
 ## Stage 1 (this build): Foundation, Learning, Testing
 - **Look and feel:** a calm, academic design with a light neutral background, dark text and one deep teal brand color, plus an "RK" logo mark. Light, dark and system themes, and the app remembers your choice.
-- **Public landing page:** the hero ("Your SSC CGL Preparation, Simplified."), Why RK Study, Practice, Mock Tests, Articles & Current Affairs, Analytics, Current Affairs, FAQ and the footer. The About, Contact, Privacy, Terms and Disclaimer pages each get their own simple page.
+- **Public landing page:** the hero ("Your SSC CGL Preparation, Simplified."), Why RK Study, Practice, Mock Tests, Articles & Current Affairs, Analytics, FAQ and the footer. The About, Contact, Privacy, Terms and Disclaimer pages each get their own simple page.
 - **Accounts:** email/password and Google sign-in, plus Login, Signup, Forgot Password and Reset Password pages. After sign-in you land on the Home dashboard. Every private page requires sign-in.
 - **Navigation:** a bottom bar on phones and a sidebar on desktop, with Home, Practice, Articles & CA, Tests and Profile.
 - **Home dashboard:** your greeting, today's progress, streak, questions solved, accuracy, weekly progress, quick actions, Continue Learning and Today's Target. All of it comes from your real activity.
@@ -17,7 +17,7 @@ This is a big brief, so I'll build it in stages. Each stage gives you something 
 - **Starter content:** sample questions for every subject and a set of sample current affairs items. You'll need to replace or expand these with verified content.
 
 ## Stage 2: Intelligence
-An Articles section (exam-focused study articles) alongside Daily Current Affairs, the Revision engine (built from your wrong answers, bookmarks and weak topics), the Study Plan generator and a charts-based Analytics page.
+The Revision engine (built from your wrong answers, bookmarks and weak topics), the Study Plan generator and a charts-based Analytics page.
 
 ## Stage 3: Advanced
 Leaderboard, an admin area (add and edit questions, tests, topics and current affairs; manage users), and an installable phone app with offline notes.
