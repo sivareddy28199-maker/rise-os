@@ -106,10 +106,10 @@ export function Prose({ text }: { text: string }) {
       {blocks.map((b, i) => {
         if (b.startsWith("## ")) return <h2 key={i} className="pt-2 text-lg font-bold">{b.slice(3)}</h2>;
         const lines = b.split("\n");
-        if (lines[0].startsWith("## "))
+        if ((lines[0] ?? "").startsWith("## "))
           return (
             <div key={i}>
-              <h2 className="pt-2 text-lg font-bold">{lines[0].slice(3)}</h2>
+              <h2 className="pt-2 text-lg font-bold">{(lines[0] ?? "").slice(3)}</h2>
               <Lines lines={lines.slice(1)} />
             </div>
           );

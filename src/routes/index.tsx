@@ -24,14 +24,14 @@ const FEATURES = [
   { icon: BarChart3, title: "Analytics", text: "Accuracy, streaks and subject-wise scores that show where you're losing marks." },
   { icon: RotateCcw, title: "Revision", text: "Bookmark tough questions and revise your weak topics before the exam." },
   { icon: Target, title: "Daily Targets", text: "A clear daily goal for each subject keeps you consistent." },
-];
+] as const;
 
 const FAQ = [
   ["Is RK Study only for SSC CGL?", "It's built around the SSC CGL Tier-I pattern, but the practice also helps with other SSC and government exams."],
   ["How is the mock test scored?", "+2 for each correct answer, −0.50 for each wrong answer and 0 for an unanswered question, just like Tier-I."],
   ["Do I need to pay?", "You can sign up and start practising for free."],
   ["Can I use it on my phone?", "Yes. RK Study is designed for phones first and works on tablets and laptops too."],
-];
+] as const;
 
 function Landing() {
   return (
