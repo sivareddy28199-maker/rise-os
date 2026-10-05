@@ -21,8 +21,13 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedCurrentAffairsRouteImport } from './routes/_authenticated/current-affairs'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedLearnRouteImport } from './routes/_authenticated/learn'
+import { Route as AuthenticatedMaxRouteImport } from './routes/_authenticated/max'
 import { Route as AuthenticatedPracticeRouteImport } from './routes/_authenticated/practice'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedProgressRouteImport } from './routes/_authenticated/progress'
+import { Route as AuthenticatedQuizRouteImport } from './routes/_authenticated/quiz'
+import { Route as AuthenticatedRoutinesRouteImport } from './routes/_authenticated/routines'
 import { Route as AuthenticatedTestsRouteImport } from './routes/_authenticated/tests'
 
 const IndexRoute = IndexRouteImport.update({
@@ -85,6 +90,16 @@ const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   path: '/home',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedLearnRoute = AuthenticatedLearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMaxRoute = AuthenticatedMaxRouteImport.update({
+  id: '/max',
+  path: '/max',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPracticeRoute = AuthenticatedPracticeRouteImport.update({
   id: '/practice',
   path: '/practice',
@@ -93,6 +108,21 @@ const AuthenticatedPracticeRoute = AuthenticatedPracticeRouteImport.update({
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProgressRoute = AuthenticatedProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedQuizRoute = AuthenticatedQuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedRoutinesRoute = AuthenticatedRoutinesRouteImport.update({
+  id: '/routines',
+  path: '/routines',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedTestsRoute = AuthenticatedTestsRouteImport.update({
@@ -113,8 +143,13 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/current-affairs': typeof AuthenticatedCurrentAffairsRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/learn': typeof AuthenticatedLearnRoute
+  '/max': typeof AuthenticatedMaxRoute
   '/practice': typeof AuthenticatedPracticeRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/progress': typeof AuthenticatedProgressRoute
+  '/quiz': typeof AuthenticatedQuizRoute
+  '/routines': typeof AuthenticatedRoutinesRoute
   '/tests': typeof AuthenticatedTestsRoute
 }
 export interface FileRoutesByTo {
@@ -129,8 +164,13 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/current-affairs': typeof AuthenticatedCurrentAffairsRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/learn': typeof AuthenticatedLearnRoute
+  '/max': typeof AuthenticatedMaxRoute
   '/practice': typeof AuthenticatedPracticeRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/progress': typeof AuthenticatedProgressRoute
+  '/quiz': typeof AuthenticatedQuizRoute
+  '/routines': typeof AuthenticatedRoutinesRoute
   '/tests': typeof AuthenticatedTestsRoute
 }
 export interface FileRoutesById {
@@ -147,8 +187,13 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/_authenticated/current-affairs': typeof AuthenticatedCurrentAffairsRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/learn': typeof AuthenticatedLearnRoute
+  '/_authenticated/max': typeof AuthenticatedMaxRoute
   '/_authenticated/practice': typeof AuthenticatedPracticeRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/progress': typeof AuthenticatedProgressRoute
+  '/_authenticated/quiz': typeof AuthenticatedQuizRoute
+  '/_authenticated/routines': typeof AuthenticatedRoutinesRoute
   '/_authenticated/tests': typeof AuthenticatedTestsRoute
 }
 export interface FileRouteTypes {
@@ -165,8 +210,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/current-affairs'
     | '/home'
+    | '/learn'
+    | '/max'
     | '/practice'
     | '/profile'
+    | '/progress'
+    | '/quiz'
+    | '/routines'
     | '/tests'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -181,8 +231,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/current-affairs'
     | '/home'
+    | '/learn'
+    | '/max'
     | '/practice'
     | '/profile'
+    | '/progress'
+    | '/quiz'
+    | '/routines'
     | '/tests'
   id:
     | '__root__'
@@ -198,8 +253,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/_authenticated/current-affairs'
     | '/_authenticated/home'
+    | '/_authenticated/learn'
+    | '/_authenticated/max'
     | '/_authenticated/practice'
     | '/_authenticated/profile'
+    | '/_authenticated/progress'
+    | '/_authenticated/quiz'
+    | '/_authenticated/routines'
     | '/_authenticated/tests'
   fileRoutesById: FileRoutesById
 }
@@ -302,6 +362,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHomeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/learn': {
+      id: '/_authenticated/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof AuthenticatedLearnRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/max': {
+      id: '/_authenticated/max'
+      path: '/max'
+      fullPath: '/max'
+      preLoaderRoute: typeof AuthenticatedMaxRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/practice': {
       id: '/_authenticated/practice'
       path: '/practice'
@@ -314,6 +388,27 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/progress': {
+      id: '/_authenticated/progress'
+      path: '/progress'
+      fullPath: '/progress'
+      preLoaderRoute: typeof AuthenticatedProgressRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/quiz': {
+      id: '/_authenticated/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof AuthenticatedQuizRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/routines': {
+      id: '/_authenticated/routines'
+      path: '/routines'
+      fullPath: '/routines'
+      preLoaderRoute: typeof AuthenticatedRoutinesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/tests': {
@@ -329,16 +424,26 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCurrentAffairsRoute: typeof AuthenticatedCurrentAffairsRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedLearnRoute: typeof AuthenticatedLearnRoute
+  AuthenticatedMaxRoute: typeof AuthenticatedMaxRoute
   AuthenticatedPracticeRoute: typeof AuthenticatedPracticeRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedProgressRoute: typeof AuthenticatedProgressRoute
+  AuthenticatedQuizRoute: typeof AuthenticatedQuizRoute
+  AuthenticatedRoutinesRoute: typeof AuthenticatedRoutinesRoute
   AuthenticatedTestsRoute: typeof AuthenticatedTestsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCurrentAffairsRoute: AuthenticatedCurrentAffairsRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedLearnRoute: AuthenticatedLearnRoute,
+  AuthenticatedMaxRoute: AuthenticatedMaxRoute,
   AuthenticatedPracticeRoute: AuthenticatedPracticeRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedProgressRoute: AuthenticatedProgressRoute,
+  AuthenticatedQuizRoute: AuthenticatedQuizRoute,
+  AuthenticatedRoutinesRoute: AuthenticatedRoutinesRoute,
   AuthenticatedTestsRoute: AuthenticatedTestsRoute,
 }
 
