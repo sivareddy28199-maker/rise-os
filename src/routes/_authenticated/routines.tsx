@@ -72,7 +72,7 @@ function Routines() {
           <SectionHeader title="Habits" />
           <Card className="divide-y py-0">
             {habits.map((h, i) => (
-              <HabitItem key={h.id} icon={HABIT_ICONS[i % 4].i} t={HABIT_ICONS[i % 4].t} title={h.title} streak={h.streak} done={h.done}
+              <HabitItem key={h.id} icon={HABIT_ICONS[i % 4]!.i} t={HABIT_ICONS[i % 4]!.t} title={h.title} streak={h.streak} done={h.done}
                 onToggle={() => setHabits((hs) => hs.map((x) => (x.id === h.id ? { ...x, done: !x.done } : x)))} />
             ))}
           </Card>

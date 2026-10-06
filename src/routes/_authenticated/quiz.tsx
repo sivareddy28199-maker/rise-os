@@ -65,7 +65,7 @@ function Runner({ mode }: { mode: "daily" | "mock" }) {
       </div>
     );
 
-  const q = qs[i];
+  const q = qs[i]!;
   const answered = answers.filter((a) => a != null).length;
   const toggleMark = () => setMarked((m) => { const n = new Set(m); n.has(i) ? n.delete(i) : n.add(i); return n; });
 
