@@ -132,7 +132,7 @@ export function Pills<T extends string>({ items, value, onChange }: { items: rea
   );
 }
 
-function Check0({ done, onToggle, label }: { done: boolean; onToggle?: () => void; label: string }) {
+function Check0({ done, onToggle, label }: { done: boolean; onToggle?: (() => void) | undefined; label: string }) {
   return (
     <button type="button" role="checkbox" aria-checked={done} aria-label={label} onClick={onToggle}
       className={cn("grid size-6 shrink-0 place-items-center rounded-full border-2 transition", done ? "border-tone-mint bg-tone-mint text-primary-foreground" : "border-input hover:border-primary")}>
