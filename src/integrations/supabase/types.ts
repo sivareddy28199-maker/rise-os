@@ -109,36 +109,212 @@ export type Database = {
         }
         Relationships: []
       }
+      goals: {
+        Row: {
+          created_at: string
+          current_value: number
+          deadline: string | null
+          description: string | null
+          id: string
+          status: string
+          target_value: number
+          title: string
+          unit: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_value?: number
+          deadline?: string | null
+          description?: string | null
+          id?: string
+          status?: string
+          target_value?: number
+          title: string
+          unit?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          current_value?: number
+          deadline?: string | null
+          description?: string | null
+          id?: string
+          status?: string
+          target_value?: number
+          title?: string
+          unit?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      habit_logs: {
+        Row: {
+          completed: boolean
+          completed_at: string | null
+          habit_id: string
+          id: string
+          log_date: string
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean
+          completed_at?: string | null
+          habit_id: string
+          id?: string
+          log_date?: string
+          user_id?: string
+        }
+        Update: {
+          completed?: boolean
+          completed_at?: string | null
+          habit_id?: string
+          id?: string
+          log_date?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "habit_logs_habit_id_fkey"
+            columns: ["habit_id"]
+            isOneToOne: false
+            referencedRelation: "habits"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      habits: {
+        Row: {
+          active: boolean
+          created_at: string
+          description: string | null
+          frequency: string
+          id: string
+          name: string
+          target_count: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          description?: string | null
+          frequency?: string
+          id?: string
+          name: string
+          target_count?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          description?: string | null
+          frequency?: string
+          id?: string
+          name?: string
+          target_count?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notes: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          subject_id: string | null
+          title: string
+          topic_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content?: string
+          created_at?: string
+          id?: string
+          subject_id?: string | null
+          title: string
+          topic_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          subject_id?: string | null
+          title?: string
+          topic_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notes_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notes_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
           created_at: string
           daily_goal: number
+          email: string | null
           id: string
+          local_data_migrated: boolean
           name: string
           preparation_level: string
           show_on_leaderboard: boolean
+          study_goal: string | null
           target_exam: string
+          target_year: number
+          updated_at: string
         }
         Insert: {
           avatar_url?: string | null
           created_at?: string
           daily_goal?: number
+          email?: string | null
           id: string
+          local_data_migrated?: boolean
           name?: string
           preparation_level?: string
           show_on_leaderboard?: boolean
+          study_goal?: string | null
           target_exam?: string
+          target_year?: number
+          updated_at?: string
         }
         Update: {
           avatar_url?: string | null
           created_at?: string
           daily_goal?: number
+          email?: string | null
           id?: string
+          local_data_migrated?: boolean
           name?: string
           preparation_level?: string
           show_on_leaderboard?: boolean
+          study_goal?: string | null
           target_exam?: string
+          target_year?: number
+          updated_at?: string
         }
         Relationships: []
       }
@@ -278,6 +454,53 @@ export type Database = {
           },
         ]
       }
+      quiz_sessions: {
+        Row: {
+          attempt_id: string | null
+          expires_at: string
+          id: string
+          question_ids: string[]
+          started_at: string
+          status: string
+          submitted_at: string | null
+          test_type: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          attempt_id?: string | null
+          expires_at: string
+          id?: string
+          question_ids: string[]
+          started_at?: string
+          status?: string
+          submitted_at?: string | null
+          test_type: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          attempt_id?: string | null
+          expires_at?: string
+          id?: string
+          question_ids?: string[]
+          started_at?: string
+          status?: string
+          submitted_at?: string | null
+          test_type?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_sessions_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "test_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       study_progress: {
         Row: {
           accuracy: number
@@ -319,6 +542,67 @@ export type Database = {
           },
         ]
       }
+      study_sessions: {
+        Row: {
+          created_at: string
+          duration_seconds: number
+          ended_at: string | null
+          id: string
+          session_type: string
+          started_at: string
+          subject_id: string | null
+          task_id: string | null
+          topic_id: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration_seconds?: number
+          ended_at?: string | null
+          id?: string
+          session_type?: string
+          started_at?: string
+          subject_id?: string | null
+          task_id?: string | null
+          topic_id?: string | null
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          duration_seconds?: number
+          ended_at?: string | null
+          id?: string
+          session_type?: string
+          started_at?: string
+          subject_id?: string | null
+          task_id?: string | null
+          topic_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_sessions_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_sessions_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_sessions_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       subjects: {
         Row: {
           description: string | null
@@ -343,6 +627,57 @@ export type Database = {
           short_name?: string
           slug?: string
           sort_order?: number
+        }
+        Relationships: []
+      }
+      tasks: {
+        Row: {
+          category: string
+          completed_at: string | null
+          created_at: string
+          description: string | null
+          end_time: string | null
+          id: string
+          priority: string
+          scheduled_date: string | null
+          source: string
+          start_time: string | null
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          end_time?: string | null
+          id?: string
+          priority?: string
+          scheduled_date?: string | null
+          source?: string
+          start_time?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          category?: string
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          end_time?: string | null
+          id?: string
+          priority?: string
+          scheduled_date?: string | null
+          source?: string
+          start_time?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -416,6 +751,66 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      test_blueprints: {
+        Row: {
+          id: string
+          question_count: number
+          subject_id: string
+          test_type: string
+        }
+        Insert: {
+          id?: string
+          question_count: number
+          subject_id: string
+          test_type: string
+        }
+        Update: {
+          id?: string
+          question_count?: number
+          subject_id?: string
+          test_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "test_blueprints_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "test_blueprints_test_type_fkey"
+            columns: ["test_type"]
+            isOneToOne: false
+            referencedRelation: "test_configs"
+            referencedColumns: ["test_type"]
+          },
+        ]
+      }
+      test_configs: {
+        Row: {
+          duration_minutes: number
+          marks_per_question: number
+          negative_marks: number
+          test_type: string
+          title: string
+        }
+        Insert: {
+          duration_minutes: number
+          marks_per_question?: number
+          negative_marks?: number
+          test_type: string
+          title: string
+        }
+        Update: {
+          duration_minutes?: number
+          marks_per_question?: number
+          negative_marks?: number
+          test_type?: string
+          title?: string
+        }
+        Relationships: []
       }
       tests: {
         Row: {
@@ -509,6 +904,7 @@ export type Database = {
         Args: { p_question_id: string; p_selected: string; p_time?: number }
         Returns: Json
       }
+      get_dashboard: { Args: never; Returns: Json }
       get_mock_questions: {
         Args: { p_per_subject?: number }
         Returns: {
@@ -548,12 +944,28 @@ export type Database = {
           topic_name: string
         }[]
       }
+      habit_streak: { Args: { p_habit: string }; Returns: number }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      quiz_payload: { Args: { p_id: string }; Returns: Json }
+      start_quiz: {
+        Args: {
+          p_count?: number
+          p_difficulty?: string
+          p_subject?: string
+          p_topic?: string
+          p_type: string
+        }
+        Returns: Json
+      }
+      submit_quiz: {
+        Args: { p_answers: Json; p_session: string }
+        Returns: Json
       }
       submit_test: {
         Args: {
