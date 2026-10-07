@@ -15,6 +15,13 @@
       "when": 1790835657918,
       "tag": "0001_rk_study_seed",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791340139756,
+      "tag": "0002_rise_os_core",
+      "breakpoints": true
     }
   ]
 }
