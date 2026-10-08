@@ -154,7 +154,7 @@ export function TaskItem({ title, meta, done, onToggle, onMore }: { title: strin
   );
 }
 
-export function HabitItem({ icon, t, title, streak, done, onToggle }: { icon: LucideIcon; t: Tone; title: string; streak: number; done: boolean; onToggle?: () => void }) {
+export function HabitItem({ icon, t, title, streak, done, onToggle, onMore }: { icon: LucideIcon; t: Tone; title: string; streak: number; done: boolean; onToggle?: (() => void) | undefined; onMore?: (() => void) | undefined }) {
   return (
     <div className="flex items-center gap-3 py-3">
       <IconTile icon={icon} t={t} />
@@ -163,6 +163,28 @@ export function HabitItem({ icon, t, title, streak, done, onToggle }: { icon: Lu
         <p className="text-xs text-muted-foreground">{streak} day streak</p>
       </div>
       <Check0 done={done} onToggle={onToggle} label={`Mark ${title} ${done ? "not done" : "done"}`} />
+      {onMore && <IconButton label={`More options for ${title}`} className="size-8 text-muted-foreground" onClick={onMore}><MoreVertical className="size-4" /></IconButton>}
+    </div>
+  );
+}
+
+export function LoadingState({ text = "Loading..." }: { text?: string }) {
+  return (
+    <div role="status" className="space-y-3 py-2" aria-label={text}>
+      <div className="h-7 w-40 animate-pulse rounded-lg bg-muted" />
+      <div className="h-20 animate-pulse rounded-2xl bg-muted" />
+      <div className="grid grid-cols-4 gap-2.5">{[0, 1, 2, 3].map((i) => <div key={i} className="h-20 animate-pulse rounded-2xl bg-muted" />)}</div>
+      <div className="h-24 animate-pulse rounded-2xl bg-muted" />
+      <span className="sr-only">{text}</span>
+    </div>
+  );
+}
+
+export function ErrorState({ onRetry, text = "We couldn't load your data. Check your connection and try again." }: { onRetry?: () => void; text?: string }) {
+  return (
+    <div className="rounded-2xl border border-destructive/30 bg-destructive/5 p-6 text-center text-sm">
+      <p className="font-semibold">{text}</p>
+      {onRetry && <button type="button" onClick={onRetry} className="mt-3 font-semibold text-primary">Try again</button>}
     </div>
   );
 }
