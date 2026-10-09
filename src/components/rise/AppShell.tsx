@@ -2,6 +2,9 @@ import { Link, Outlet } from "@tanstack/react-router";
 import { Home, CalendarCheck, BookOpen, BarChart3, Sparkles, Bell, User } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import { dashboardQuery } from "@/services/dashboard";
+import { useRealtimeSync, useLocalDataMigration } from "@/hooks/useRealtimeSync";
 
 const NAV = [
   { to: "/home", label: "Home", icon: Home },
@@ -86,6 +89,9 @@ export function MobileBottomNav() {
 }
 
 export function AppShell() {
+  const { data } = useQuery(dashboardQuery);
+  useRealtimeSync();
+  useLocalDataMigration(data?.profile?.local_data_migrated);
   return (
     <div className="min-h-dvh overflow-x-hidden md:flex">
       <DesktopSidebar />
